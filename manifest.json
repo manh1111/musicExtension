@@ -1,0 +1,35 @@
+{
+  "name": "Nhaccuatui Extension",
+  "version": "1.0",
+  "version_name": "1.0 beta",
+  "manifest_version": 3,
+  "description": "Extension for Nhaccuatui",
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png"
+  },
+  "action": {
+    "default_icon": {
+      "19": "images/icon.png",
+      "38": "images/icon.png"
+    },
+    "default_title": "Nhaccuatui Extension",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.nhaccuatui.com/bai-hat/*"],
+      "css": ["styles/lib/main.css", "styles/lib/page.css"],
+      "js": ["scripts/content.js"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "sandbox allow-scripts; script-src 'self' 'https://apis.google.com/' 'https://www.gstatic.com/' 'https://*.firebaseio.com' 'https://www.googleapis.com' 'https://ajax.googleapis.com'; object-src 'self'"
+  },
+  "permissions": ["storage", "clipboardWrite"]
+}
